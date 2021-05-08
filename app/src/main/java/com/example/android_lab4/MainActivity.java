@@ -53,6 +53,14 @@ public class MainActivity extends AppCompatActivity {
             intencja.putExtra("element", zwierz);
             startActivityForResult(intencja, 2);
         });
+
+        listView.setOnItemLongClickListener((parent, view, position, id) -> {
+            db.usun(String.valueOf(id));
+            adapter.changeCursor(db.lista());
+            adapter.notifyDataSetChanged();
+            return true;
+        });
+
     }
 
     @Override
